@@ -1,20 +1,16 @@
 import _ from 'lodash';
-import './style.css';
-import logo from './melon_logo.png';
-import data from './data.xml';
+import printMe from './print';
 
 function component() {
     const element = document.createElement('div');
+    const btn = document.createElement('button');
 
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
 
-    const myIcon = new Image();
-    myIcon.src = logo;
+    btn.innerHTML = 'Click me and check the console!';
+    btn.onclick = printMe;
 
-    element.appendChild(myIcon);
-
-    console.log(data);
+    element.appendChild(btn);
 
     return element;
 }
