@@ -27,6 +27,7 @@ module.exports = {
         publicPath: '/'
     },
     optimization: {
+        usedExports: true,
         moduleIds: 'hashed',
         runtimeChunk: 'single',
         splitChunks: {
