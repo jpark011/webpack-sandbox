@@ -1,4 +1,5 @@
-import Print from './print'
+import Print from './print';
+import './style.css';
 
 async function getComponent() {
     const element = document.createElement('div');
@@ -7,10 +8,19 @@ async function getComponent() {
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
     element.onclick = Print.bind(null, 'Hello webpack!');
     
+    document.body.appendChild(element);
+    
     return element;
 }
 
-getComponent()
-    .then((component) => {
-        document.body.appendChild(component);
-    });
+let element = getComponent();
+
+if (module.hot) {
+    module.hot.accept('./print', () => {
+        console.log('Accepting the updated print module!');
+
+        document.body.removeChild(element);
+        element = getComponent();
+        document.body.appendChild(element);
+    })
+}

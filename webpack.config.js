@@ -9,7 +9,8 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        hot: true
     },
     plugins: [
         new CleanWebpackPlugin({
@@ -20,8 +21,8 @@ module.exports = {
         })
     ],
     output: {
-        filename: '[name].[contenthash].bundle.js',
-        chunkFilename: '[name].[contenthash].bundle.js',
+        filename: '[name].[hash].bundle.js',
+        chunkFilename: '[name].[hash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
@@ -37,16 +38,16 @@ module.exports = {
                 }
             }
         }
-    }
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.css$/,
-    //             use: [
-    //                 'style-loader',
-    //                 'css-loader'
-    //             ]
-    //         },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
     //         {
     //             test: /\.(png|svg|jpg|gif)$/,
     //             use: [
@@ -71,6 +72,6 @@ module.exports = {
     //                 'xml-loader'
     //             ]
     //         }
-    //     ]
-    // }
+        ]
+    }
 };
