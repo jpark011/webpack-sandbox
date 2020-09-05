@@ -1,23 +1,22 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {default: merge} = require('webpack-merge');
+const devConfig = require('./webpack.dev');
+const prodConfig = require('./webpack.prod');
 
-module.exports = {
-    mode: 'development',
+const config = process.env.NODE_ENV !== 'production' ? devConfig : prodConfig;
+
+module.exports = merge(config, {
     entry: {
         index: './src/index.js',
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true
     },
     plugins: [
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: false
         }),
         new HtmlWebpackPlugin({
-            title: 'Caching'
+            title: 'Production'
         })
     ],
     output: {
@@ -75,4 +74,4 @@ module.exports = {
     //         }
         ]
     }
-};
+});

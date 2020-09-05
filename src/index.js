@@ -2,6 +2,10 @@ import Print from './print';
 import './style.css';
 import {cube} from './math';
 
+if (process.env.NODE_ENV !== 'production') {
+    console.log('In DEV mode!');
+}
+
 async function getComponent() {
     const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
     const element = document.createElement('div');
