@@ -42,6 +42,12 @@ module.exports = merge(config, {
     module: {
         rules: [
             {
+                test: /\.html$/,
+                use: [
+                    'html-loader'
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: [
                     'style-loader',
