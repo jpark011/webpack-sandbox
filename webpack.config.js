@@ -1,11 +1,15 @@
+// In webpack 5, we can use "import _ from XYZ"
+// with "type": "module" in package.json
 const path = require('path');
+
+const {default: merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const {default: merge} = require('webpack-merge');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const config = process.env.NODE_ENV !== 'production' ? devConfig : prodConfig;
 
@@ -33,8 +37,8 @@ module.exports = merge(config, {
         })
     ],
     output: {
-        filename: '[name].[hash].bundle.js',
-        chunkFilename: '[name].[hash].bundle.js',
+        filename: 'runtime-[hash].bundle.js',
+        chunkFilename: '[name]-[hash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
