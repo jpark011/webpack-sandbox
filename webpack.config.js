@@ -1,22 +1,35 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const {default: merge} = require('webpack-merge');
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const config = process.env.NODE_ENV !== 'production' ? devConfig : prodConfig;
 
 module.exports = merge(config, {
     entry: {
-        index: './src/index.ts',
+        main: './src/main.ts',
     },
     plugins: [
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: false
         }),
         new HtmlWebpackPlugin({
-            title: 'Production'
+            template: './src/index.html'
+        }),
+        // Included for PWA manifest.json
+        // currently, html-webpack-plugin does not support manifest... 
+        new CopyPlugin({
+            patterns: [
+                './src/manifest.json'
+            ]
+        }),
+        new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true
         })
     ],
     output: {
