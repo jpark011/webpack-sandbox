@@ -9,7 +9,7 @@ const config = process.env.NODE_ENV !== 'production' ? devConfig : prodConfig;
 
 module.exports = merge(config, {
     entry: {
-        index: './src/index.js',
+        index: './src/index.ts',
     },
     plugins: [
         new CleanWebpackPlugin({
@@ -39,6 +39,9 @@ module.exports = merge(config, {
             }
         }
     },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     module: {
         rules: [
             {
@@ -54,6 +57,11 @@ module.exports = merge(config, {
                     'css-loader'
                 ]
             },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            }
     //         {
     //             test: /\.(png|svg|jpg|gif)$/,
     //             use: [

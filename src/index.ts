@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import myBody from  './body.html'
+import myBody from  './body.html';
 import './style.css';
 import {cube} from './math';
 
@@ -41,7 +41,7 @@ if (module.hot) {
         console.log('Accepting the updated print module!');
 
         document.body.removeChild(element);
-        element = getComponent();
+        element = component();
         document.body.appendChild(element);
     })
 }
