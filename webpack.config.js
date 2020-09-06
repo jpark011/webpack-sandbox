@@ -44,8 +44,7 @@ module.exports = merge(config, {
     output: {
         filename: 'runtime-[hash].bundle.js',
         chunkFilename: '[name]-[hash].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        path: path.resolve(__dirname, 'dist/docs')
     },
     optimization: {
         usedExports: true,
