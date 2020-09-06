@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import myBody from  './body.html';
-import './style.css';
 import {cube} from './math';
 
 if (process.env.NODE_ENV !== 'production') {

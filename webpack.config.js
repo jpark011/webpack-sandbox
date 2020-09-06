@@ -10,12 +10,13 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = process.env.NODE_ENV !== 'production' ? devConfig : prodConfig;
 
 module.exports = merge(config, {
     entry: {
-        main: './src/main.ts',
+        main: ['./src/main.ts', './src/style.css'],
     },
     plugins: [
         new CleanWebpackPlugin({
@@ -24,16 +25,20 @@ module.exports = merge(config, {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
+        new MiniCssExtractPlugin({
+            filename: '[name]-[hash].css',
+            chunkFilename: '[name]-[hash].css',
+        }),
+        new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true
+        }),
         // Included for PWA manifest.json
         // currently, html-webpack-plugin does not support manifest... 
         new CopyPlugin({
             patterns: [
                 './src/manifest.json'
             ]
-        }),
-        new WorkboxPlugin.GenerateSW({
-            clientsClaim: true,
-            skipWaiting: true
         })
     ],
     output: {
@@ -70,7 +75,7 @@ module.exports = merge(config, {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
             },
