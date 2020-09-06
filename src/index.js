@@ -1,4 +1,4 @@
-import Print from './print';
+import _ from 'lodash';
 import myBody from  './body.html'
 import './style.css';
 import {cube} from './math';
@@ -9,20 +9,32 @@ if (process.env.NODE_ENV !== 'production') {
 
 document.body.innerHTML = myBody;
 
-async function getComponent() {
-    const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
+function component() {
     const element = document.createElement('div');
+    const button = document.createElement('button');
+    const br = document.createElement('br');
     const number = 5;
-
+    
+    button.innerHTML = 'Click me and look at the console!';
     element.innerHTML = _.join(['Hello', 'webpack', `${number} cubed: `, cube(number)], ' ');
-    element.onclick = Print.bind(null, 'Hello webpack!');
     
-    document.body.appendChild(element);
+    element.appendChild(br);
+    element.appendChild(button);
     
+    button.onclick = (e) => {
+        import(/* webpackChunkName: "print" */ './print')
+            .then((module) => {
+                const { default: print } = module;
+                
+                print();
+            });
+    }
+
     return element;
 }
 
-let element = getComponent();
+let element = component();
+document.body.appendChild(element);
 
 if (module.hot) {
     module.hot.accept('./print', () => {
