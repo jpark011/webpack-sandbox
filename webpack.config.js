@@ -23,7 +23,8 @@ module.exports = merge(config, {
             cleanStaleWebpackAssets: false
         }),
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            favicon: './src/logo.png'
         }),
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
@@ -37,7 +38,8 @@ module.exports = merge(config, {
         // currently, html-webpack-plugin does not support manifest... 
         new CopyPlugin({
             patterns: [
-                './src/manifest.json'
+                './src/manifest.json',
+                './src/logo.png',
             ]
         })
     ],
