@@ -105,7 +105,10 @@ define("./service-worker.js",['./workbox-abaa1409'], function (workbox) { 'use s
 
   workbox.precacheAndRoute([{
     "url": "index.html",
-    "revision": "19040b2678024060344992b5ada7bf73"
+    "revision": "bc30a8f25b531243c967ede3c3648dd7"
+  }, {
+    "url": "logo.png",
+    "revision": "b259c1b19517f0ae81094d57cd38d7e1"
   }, {
     "url": "main-1d102877268a31b190a1.bundle.js",
     "revision": "975706d49a7b5260452b1594192d01ac"
@@ -114,7 +117,7 @@ define("./service-worker.js",['./workbox-abaa1409'], function (workbox) { 'use s
     "revision": "2b0a65c0b366724f510b8462a069754f"
   }, {
     "url": "manifest.json",
-    "revision": "737ed151e0164de4b81c8fe58b320176"
+    "revision": "d2a9670703610172fce1c8dce891bc40"
   }, {
     "url": "print-1d102877268a31b190a1.bundle.js",
     "revision": "eff7755f2792668ab5d8d69e3e0a5c9d"

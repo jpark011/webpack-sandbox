@@ -3,7 +3,13 @@
     "short_name": "webpack-tuto",
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
-    "display": "browser",
+    "display": "standalone",
     "scope": "/",
-    "start_url": "/"
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "837x837"
+        }
+    ]
   }
