@@ -2,11 +2,13 @@ import _ from 'lodash';
 import myBody from  './body.html';
 import {cube} from './math';
 
+import(/* webpackChunkName: "app-drawer" */ './app-drawer/app-drawer');
+
 if (process.env.NODE_ENV !== 'production') {
     console.log('In DEV mode!');
 }
 
-document.body.innerHTML = myBody;
+// document.body.innerHTML = myBody;
 
 function component() {
     const element = document.createElement('div');

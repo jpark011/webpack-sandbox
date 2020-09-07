@@ -16,7 +16,7 @@ const config = process.env.NODE_ENV !== 'production' ? devConfig : prodConfig;
 
 module.exports = merge(config, {
     entry: {
-        main: ['./src/main.ts', './src/style.css'],
+        main: ['./src/main.ts', './src/style.css']
     },
     plugins: [
         new CleanWebpackPlugin({
@@ -74,9 +74,29 @@ module.exports = merge(config, {
                 ]
             },
             {
-                test: /\.css$/,
+                test: /style\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: process.env.NODE_ENV === 'development',
+                            reloadAll: true
+                        }
+                    },
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.css$/,
+                exclude: /style\.css$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name]-[hash].css'
+                        }
+                    },
+                    'extract-loader',
                     'css-loader'
                 ]
             },
@@ -84,7 +104,7 @@ module.exports = merge(config, {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
     //         {
     //             test: /\.(png|svg|jpg|gif)$/,
     //             use: [

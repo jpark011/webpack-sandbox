@@ -1,0 +1,13 @@
+:host {
+    height: 100px;
+    background: yellow;
+}
+
+:host:not(:defined) {
+    background: red;
+}
+
+:host[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+}
