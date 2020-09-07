@@ -1,6 +1,11 @@
 :host {
+    display: block;
     height: 100px;
     background: yellow;
+}
+
+:host([hidden]) {
+    display: none;
 }
 
 :host:not(:defined) {
@@ -10,4 +15,8 @@
 :host[disabled] {
     opacity: 0.5;
     pointer-events: none;
+}
+
+::slotted(input[type=checkbox]) {
+    display: block;
 }

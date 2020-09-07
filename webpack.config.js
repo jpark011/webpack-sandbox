@@ -87,8 +87,7 @@ module.exports = merge(config, {
                 ]
             },
             {
-                test: /\.css$/,
-                exclude: /style\.css$/,
+                test: /components\/.*\.css$/,
                 use: [
                     {
                         loader: 'file-loader',

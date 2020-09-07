@@ -5,3 +5,7 @@ body {
 .hello {
     background: red;
 }
+
+input[type=checkbox] {
+    display: inline;
+}
