@@ -1,7 +1,9 @@
 :host {
+    --my-theme-primary: yellow;
+    --my-theme-secondary: blue;
     display: block;
     height: 100px;
-    background: yellow;
+    background: var(--my-theme-primaryy, yellow);
 }
 
 :host([hidden]) {
@@ -19,4 +21,8 @@
 
 ::slotted(input[type=checkbox]) {
     display: block;
+}
+
+::slotted(input[type=date]) {
+    background: var(--my-theme-secondary);
 }

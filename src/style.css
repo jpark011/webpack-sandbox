@@ -1,11 +1,20 @@
+:root {
+    --my-theme-primary: green;
+    --my-theme-secondary: red;
+}
+
 body {
-    background: green;
+    background: var(--my-theme-primary);
 }
 
 .hello {
-    background: red;
+    background: var(--my-theme-secondary);
 }
 
 input[type=checkbox] {
     display: inline;
+}
+
+input[type=date] {
+    background: var(--my-theme-secondary);
 }
