@@ -2,7 +2,7 @@ import _ from 'lodash';
 import myBody from  './body.html';
 import {cube} from './math';
 
-import(/* webpackChunkName: "app-drawer" */ './app-drawer/app-drawer');
+import(/* webpackChunkName: "app-drawer" */ './components/app-drawer');
 
 if (process.env.NODE_ENV !== 'production') {
     console.log('In DEV mode!');
